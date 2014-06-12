@@ -12,7 +12,7 @@ Corsaro 2.1.0
 Bug Fixes
 ---------
  - Fix regression that caused Corsaro to crash when reading from a pcap
-   interface.
+   interface (contributed by Alessandro Puccetti).
  - Fix warnings issued by the clang compiler
  - No longer uses += concatenation in configure stage (unsupported by
    FreeBSD 10)
@@ -21,7 +21,7 @@ Enhancements
 ------------
  - cors-ft-aggregate now defaults to taking input files directly on the
    command line, rather than via a file. The old functionality is
-   available by using the -F option.
+   available by using the -F option (contributed by Alessandro Puccetti).
 
 Corsaro 2.0.0
 =============
