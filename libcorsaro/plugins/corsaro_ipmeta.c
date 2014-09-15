@@ -213,7 +213,6 @@ static int parse_args(corsaro_t *corsaro)
 	}
 
       if(ipmeta_enable_provider(state->ipmeta, provider,
-				IPMETA_DS_DEFAULT,
 				provider_arg_ptr,
 				is_default) != 0)
 	{
