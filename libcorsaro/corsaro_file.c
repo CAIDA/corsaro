@@ -370,6 +370,7 @@ off_t corsaro_file_rread_packet(corsaro_file_in_t *file,
       if(wandio_read(file->wand_io, pktbuf, len) != len)
 	{
 	  fprintf(stderr, "could not read packet into buffer\n");
+	  free(pktbuf);
 	  return -1;
 	}
       trace_construct_packet(packet, TRACE_TYPE_ETH,
