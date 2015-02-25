@@ -465,6 +465,7 @@ int corsaro_ipmeta_process_flowtuple_class_end(corsaro_t *corsaro,
   /* dont care */
   return 0;
 }
+#endif
 
 /* ========== PUBLIC HELPER FUNCTIONS BELOW HERE ========== */
 inline
@@ -499,4 +500,3 @@ ipmeta_provider_t *corsaro_ipmeta_get_provider(corsaro_t *corsaro,
   return ipmeta_get_provider_by_id(STATE(corsaro)->ipmeta, provider_id);
 }
 
-#endif
