@@ -263,7 +263,7 @@ static int process_generic(corsaro_t *corsaro, corsaro_packet_state_t *state,
     {
       provider = plugin_state->enabled_providers[i];
       assert(provider != NULL);
-      record = ipmeta_lookup(provider, src_ip);
+      record = ipmeta_lookup_single(provider, src_ip);
 
       /* set the record in the cache for this provider */
       state->ipmeta_records[ipmeta_get_provider_id(provider)-1] = record;
