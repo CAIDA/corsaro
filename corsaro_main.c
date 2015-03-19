@@ -83,6 +83,12 @@ static int promisc = 0;
 /** The number of legacy intervals we have processed */
 static int legacy_intervals = 0;
 
+/* default gap limit */
+#define GAP_LIMIT_DEFAULT 0
+
+/** Maximum allowed packet inter-arrival time */
+static int gap_limit = GAP_LIMIT_DEFAULT;
+
 /** Handles SIGINT gracefully and shuts down */
 static void catch_sigint(int sig)
 {
@@ -183,6 +189,9 @@ static void close_trace()
 /** Process a trace file */
 static int process_trace(char *traceuri)
 {
+  double this_time = 0;
+  double last_time = 0;
+
   if(init_trace(traceuri) != 0)
     {
       corsaro_log(__func__, corsaro,
@@ -195,6 +204,17 @@ static int process_trace(char *traceuri)
   corsaro_set_trace(corsaro, trace);
 
   while (corsaro_shutdown == 0 && trace_read_packet(trace, packet)>0) {
+    this_time = trace_get_seconds(packet);
+    if(gap_limit > 0 && /* gap limit is enabled */
+       ((this_time-last_time) > 0) && /* packet doesn't go backward */
+       (this_time - last_time) > gap_limit) /* packet exceeds gap */
+      {
+        corsaro_log(__func__, corsaro,
+                    "gap limit exceeded (prev: this: diff:)",
+                    last_time, this_time, (this_time - last_time));
+        return -1;
+      }
+    last_time = this_time;
     if((filter == NULL || trace_apply_filter(filter, packet) > 0) &&
        corsaro_per_packet(corsaro, packet) != 0)
       {
@@ -340,6 +360,7 @@ static void usage(const char *name)
 	  "                      - %%N => monitor name\n"
 	  "                      - see man strftime(3) for more options\n"
 	  "       -f <filter>   BPF filter to apply to packets\n"
+          "       -g <gap-limit> maximum allowed gap between packets (0 is no limit) (default: %d)\n"
 	  "       -G            disable the global metadata output file\n"
 	  "       -i <interval> distribution interval in seconds (default: %d)\n"
 	  "       -l            the input file has legacy intervals (FlowTuple only)\n"
@@ -350,7 +371,9 @@ static void usage(const char *name)
 	  "       -p <plugin>   enable the given plugin, -p can be used "
 	  "multiple times (default: all)\n"
 	  "                     available plugins:\n",
-	  name, CORSARO_INTERVAL_DEFAULT);
+	  name,
+          GAP_LIMIT_DEFAULT,
+          CORSARO_INTERVAL_DEFAULT);
 
   for(i = 0; i < plugin_cnt; i++)
     {
@@ -402,6 +425,10 @@ int main(int argc, char *argv[])
       }
       switch(opt)
 	{
+        case 'g':
+          gap_limit = atoi(optarg);
+          break;
+
 	case 'G':
 	  global_file_disable = 1;
 	  break;
