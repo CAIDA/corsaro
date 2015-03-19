@@ -206,6 +206,7 @@ static int process_trace(char *traceuri)
   while (corsaro_shutdown == 0 && trace_read_packet(trace, packet)>0) {
     this_time = trace_get_seconds(packet);
     if(gap_limit > 0 && /* gap limit is enabled */
+       last_time > 0 && /* this is not the first packet */
        ((this_time-last_time) > 0) && /* packet doesn't go backward */
        (this_time - last_time) > gap_limit) /* packet exceeds gap */
       {
