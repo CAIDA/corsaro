@@ -417,7 +417,7 @@ int main(int argc, char *argv[])
   signal(SIGINT, catch_sigint);
 
   while(prevoptind = optind,
-	(opt = getopt(argc, argv, ":f:i:m:n:o:p:r:R:aGlLPv?")) >= 0)
+	(opt = getopt(argc, argv, ":f:g:i:m:n:o:p:r:R:aGlLPv?")) >= 0)
     {
       if (optind == prevoptind + 2 && *optarg == '-' ) {
         opt = ':';
