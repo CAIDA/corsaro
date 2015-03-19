@@ -188,6 +188,9 @@ typedef enum corsaro_interval_align
 
 /** @} */
 
+/** The interval after which we will end an interval */
+#define CORSARO_INTERVAL_DEFAULT 60
+
 /**
  * @name Corsaro output API functions
  *

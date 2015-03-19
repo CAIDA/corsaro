@@ -207,9 +207,6 @@ struct corsaro_plugin_data
 
 /** @} */
 
-/** The interval after which we will end an interval */
-#define CORSARO_INTERVAL_DEFAULT 60
-
 /** Corsaro state for a packet
  *
  * This is passed, along with the packet, to each plugin.
