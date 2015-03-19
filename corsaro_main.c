@@ -210,7 +210,7 @@ static int process_trace(char *traceuri)
        (this_time - last_time) > gap_limit) /* packet exceeds gap */
       {
         corsaro_log(__func__, corsaro,
-                    "gap limit exceeded (prev: this: diff:)",
+                    "gap limit exceeded (prev: %f this: %f diff: %f)",
                     last_time, this_time, (this_time - last_time));
         return -1;
       }
