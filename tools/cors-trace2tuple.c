@@ -58,7 +58,6 @@
 #include <signal.h>
 
 #include "libtrace.h"
-#include "lt_inttypes.h"
 
 struct libtrace_t *trace;
 
