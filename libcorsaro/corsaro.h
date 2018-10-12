@@ -26,8 +26,6 @@
 #ifndef __CORSARO_H
 #define __CORSARO_H
 
-#include "config.h"
-
 #include "libtrace.h"
 #include "wandio.h"
 

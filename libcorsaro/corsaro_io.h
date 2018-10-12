@@ -26,8 +26,6 @@
 #ifndef __CORSARO_IO_H
 #define __CORSARO_IO_H
 
-#include "config.h"
-
 #include "corsaro_int.h"
 
 #include "corsaro_file.h"
