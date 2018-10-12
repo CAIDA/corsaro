@@ -30,6 +30,8 @@
 #include <string.h>
 #include <unistd.h>
 
+#include "config.h"
+
 #include "libtrace.h"
 
 #include "corsaro.h"

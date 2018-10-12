@@ -26,8 +26,6 @@
 #ifndef __CORSARO_LOG_H
 #define __CORSARO_LOG_H
 
-#include "config.h"
-
 #include <stdarg.h>
 
 #include "corsaro_int.h"
