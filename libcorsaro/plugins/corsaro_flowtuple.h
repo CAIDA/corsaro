@@ -26,11 +26,6 @@
 #ifndef __CORSARO_FLOWTUPLE_H
 #define __CORSARO_FLOWTUPLE_H
 
-#include "khash.h"
-#include "ksort.h"
-
-#include "corsaro_plugin.h"
-
 /** @file
  *
  * @brief Header file which exports corsaro_flowtuple plugin API
@@ -352,7 +347,7 @@ int corsaro_flowtuple_record_print(corsaro_in_record_type_t record_type,
  *         |  TTL  |TCP_FLG|PROTO|  LEN   |
  *         --------------------------------
  */
-khint32_t corsaro_flowtuple_hash_func(struct corsaro_flowtuple *ft);
+uint32_t corsaro_flowtuple_hash_func(struct corsaro_flowtuple *ft);
 
 /** Tests two flowtuples for equality */
 #ifdef CORSARO_SLASH_EIGHT

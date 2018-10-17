@@ -40,6 +40,8 @@
 
 #include "corsaro_flowtuple.h"
 
+#include "khash.h"
+
 /** @file
  *
  * @brief Code which uses libcorsaro to convert an corsaro output file to ascii

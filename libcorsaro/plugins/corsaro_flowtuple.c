@@ -37,6 +37,9 @@
 
 #include "utils.h"
 
+#include "khash.h"
+#include "ksort.h"
+
 #include "corsaro_io.h"
 #include "corsaro_file.h"
 #include "corsaro_log.h"
@@ -1303,7 +1306,7 @@ int corsaro_flowtuple_add_inc(void *h, corsaro_flowtuple_t *t,
  *         |  TTL  |TCP_FLG|PROTO|  LEN   |
  *         --------------------------------
  */
-khint32_t corsaro_flowtuple_hash_func(struct corsaro_flowtuple *ft)
+uint32_t corsaro_flowtuple_hash_func(struct corsaro_flowtuple *ft)
 {
   khint32_t h = (khint32_t)ft->src_ip*59;
 #ifdef CORSARO_SLASH_EIGHT
@@ -1320,5 +1323,5 @@ khint32_t corsaro_flowtuple_hash_func(struct corsaro_flowtuple *ft)
 #else
   CORSARO_FLOWTUPLE_SHIFT_AND_XOR((ft->protocol<<8)|(ft->ip_len));
 #endif
-  return h;
+  return (uint32_t)h;
 }
