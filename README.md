@@ -1,9 +1,9 @@
-Overview
-========
+# READ THIS!
+This repository has been deprecated and made read-only. Ongoing Corsaro development is happening at the [CAIDA/corsaro3](https://github.com/CAIDA/corsaro3) repository.
 
-Both Corsaro and this documentation are still under active development and
-features will likely change between versions.
-Please contact corsaro-info@caida.org with any questions and/or suggestions.
+Existing users should upgrade to Corsaro3. For help with this, please contact corsaro-info@caida.org. There will no longer be any updates to this code, and support will be limited to assisting users process/convert existing Corsaro V2 data.
+
+Contact corsaro-info@caida.org with any questions.
 
 Introduction
 ============
